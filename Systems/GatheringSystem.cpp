@@ -3,8 +3,11 @@
 
 EItemType GatheringSystem::GatherResource()
 {
+	//The utility function Random::range generates a random integer value between min and max.
+	//The value will change depending on the amount of switch cases in the function.
 	int Roll = Random::Range(0, 2);
 
+	//When gathering a resource, a random number is generated to determine which type of resource is gathered.
 	switch (Roll)
 	{
 		case 0:
@@ -13,7 +16,8 @@ EItemType GatheringSystem::GatherResource()
 			return EItemType::Stone;
 		case 2:
 			return EItemType::Iron;
+		default:
+			return EItemType::Wood; // Default case, should never reach here
 	}
 
-	return EItemType::Wood; // Default case, should never reach here
 }
