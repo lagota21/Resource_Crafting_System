@@ -8,17 +8,19 @@ void GameManager::Init()
 	// Initialize crafting recipes using the Recipe struct defined in Recipe.h.
 	//Defines required amounts, display names, and the resulting item for each recipe.
 	Crafter.InitRecipes();
+	Gatherer.InitNodes();
 
 }
 
 void GameManager::Run()
 {
+	
 	// The choice variable is used to store the action selected by the player from the interaction menu.
 	int Choice = 0;
 
 	// The RefreshRate constant determines how many player actions occur before the console is cleared and the menu is refreshed,
 	//avoids clogging the console with repeated actions and keeps the interface clean and user-friendly with refreshing the menu.
-	const int RefreshRate = 7; 
+	const int RefreshRate = 4; 
 	//Keeps track of actions taken by the player.
 	int ActionCounter = 0;
 
@@ -30,13 +32,15 @@ void GameManager::Run()
 		{
 			system("cls");
 
-			std::cout << "\n=== Resource Gathering & Crafting System ===\n";
+			std::cout << "\n====== RPG Simulation ======\n\n";
+			std::cout << "\n=== Actions ===\n";
 
 			std::cout <<
 				"\n1. Gather Resource\n"
 				<< "2. Craft Item\n"
 				<< "3. View Inventory\n"
-				<< "4. Exit\n";
+				<< "4. World Map\n"
+				<< "5. Exit\n";
 		}
 
 
@@ -54,7 +58,7 @@ void GameManager::Run()
 		}
 
 		//Exit condition to break the loop and end the game.
-		if (Choice == 4)
+		if (Choice == 5)
 			break;
 
 		// Handle the player's choice by calling the appropriate function based on the selected action.
@@ -68,7 +72,10 @@ void GameManager::Run()
 			HandleCrafting();
 			break;
 		case 3:
-			PlayerInventory.Print();
+			PlayerCharacter.PlayerInventory.Print();
+			break;
+		case 4:
+			Traveler.HandleTravel();
 			break;
 		default:
 			std::cout << "Invalid choice!" << std::endl;
@@ -89,21 +96,39 @@ void GameManager::Run()
 
 void GameManager::HandleGathering()
 {
-	//The random resource gathered is stored in the Item variable.
-	EItemType Item = Gatherer.GatherResource();
-	//
-	PlayerInventory.AddItem(Item, 1);
+	ELocationType Location = Traveler.GetCurrentLocation();
 
-	std::cout << "Gathered: " << ItemToString(Item) << std::endl;
+	const auto& Nodes = Gatherer.GetNodes(Location);
+
+	if (Nodes.empty())
+	{
+		std::cout << "No resources here!\n";
+		return;
+	}
+
+	Gatherer.ShowNodes(Location);
+
+	int Choice;
+	std::cout << "Choose resource: ";
+	std::cin >> Choice;
+
+	// Validate input
+	if (Choice <= 0 || Choice > Nodes.size())
+	{
+		std::cout << "Invalid selection!\n";
+		return;
+	}
+
+	Gatherer.GatherFromNode(Choice - 1, Location, PlayerCharacter);
 }
 
 void GameManager::HandleCrafting()
 {
-	auto ValidRecipes = Crafter.GetValidRecipes(PlayerInventory);
+	auto ValidRecipes = Crafter.GetValidRecipes(PlayerCharacter.PlayerInventory);
 
 	if (ValidRecipes.empty())
 	{
-		std::cout << "No valid recipes to craft!" << std::endl;
+		std::cout << "No valid recipes to craft!\n";
 		return;
 	}
 
@@ -115,15 +140,17 @@ void GameManager::HandleCrafting()
 	}
 
 	int Selection;
+	std::cout << "Choose recipe: ";
 	std::cin >> Selection;
-	Selection -= 1; // Adjust for 0-based index
+
+	Selection -= 1;
 
 	if (Selection >= 0 && Selection < ValidRecipes.size())
 	{
-		Crafter.CraftRecipe(ValidRecipes[Selection], PlayerInventory);
+		Crafter.CraftRecipe(ValidRecipes[Selection], PlayerCharacter.PlayerInventory);
 	}
 	else
-		{
-		std::cout << "Invalid selection!" << std::endl;
+	{
+		std::cout << "Invalid selection!\n";
 	}
 }

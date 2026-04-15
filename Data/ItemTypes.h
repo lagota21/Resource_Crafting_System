@@ -8,10 +8,24 @@
 //They can be gathered, stored in the inventory, and used in crafting recipes.
 enum class EItemType
 {
-	Wood,
+	//wood tier
+	NormalLog,
+	OakLog,
+	WillowLog,
+
+	//stone tier
 	Stone,
-	Iron,
+	IronOre,
+	GoldOre,
+
+	//fish tier
+	RawShrimp,
+	RawSalmon,
+	RawShark,
+
+	//craft items
 	Plank,
+	IronBar,
 	Axe
 	
 };
@@ -22,14 +36,28 @@ inline std::string ItemToString(EItemType type)
 {
 	switch (type)
 	{
-	case EItemType::Wood:
-		return "Wood";
+	case EItemType::NormalLog:
+		return "Normal Log";
+	case EItemType::OakLog:
+		return "Oak Log";
+	case EItemType::WillowLog:
+		return "Willow Log";
 	case EItemType::Stone:
 		return "Stone";
-	case EItemType::Iron:
-		return "Iron";
+	case EItemType::IronOre:
+		return "Iron Ore";
+	case EItemType::GoldOre:
+		return "Gold Ore";
+	case EItemType::RawShrimp:
+		return "Raw Shrimp";
+	case EItemType::RawSalmon:
+		return "Raw Salmon";
+	case EItemType::RawShark:
+		return "Raw Shark";
 	case EItemType::Plank:
-		return "Plank";
+		return "Normal Plank";
+	case EItemType::IronBar:
+		return "Iron Bar";
 	case EItemType::Axe:
 		return "Axe";
 	default:

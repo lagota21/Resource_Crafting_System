@@ -9,17 +9,24 @@ void CraftingSystem::InitRecipes()
 	FRecipe Plank;
 	Plank.Result = EItemType::Plank;
 	Plank.DisplayName = "Plank";
-	Plank.Ingredients[EItemType::Wood] = 2;
+	Plank.Ingredients[EItemType::NormalLog] = 2;
 
 	//push_back adds the recipe to the Recipes vector, which is used to store all available crafting recipes in the game.
 	Recipes.push_back(Plank);
+
+	//Iron Bar Recipe: 2 Iron -> 1 iron Bar
+	FRecipe IronBar;
+	IronBar.Result = EItemType::IronBar;
+	IronBar.DisplayName = "Iron Bar";
+	IronBar.Ingredients[EItemType::IronOre] = 2;
+	Recipes.push_back(IronBar);
 
 	// Axe Recipe: 3 Wood + 2 Iron -> 1 Axe
 	FRecipe Axe;
 	Axe.Result = EItemType::Axe;
 	Axe.DisplayName = "Axe";
-	Axe.Ingredients[EItemType::Wood] = 3;
-	Axe.Ingredients[EItemType::Iron] = 2;
+	Axe.Ingredients[EItemType::NormalLog] = 3;
+	Axe.Ingredients[EItemType::IronBar] = 2;
 	Recipes.push_back(Axe);
 }
 

@@ -2,6 +2,8 @@
 #include "../Systems/Inventory.h"
 #include "../Systems/GatheringSystem.h"
 #include "../Systems/CraftingSystem.h"
+#include "../Systems/TraverseSystem.h"
+#include "../Core/Player.h"
 
 class GameManager
 {
@@ -13,7 +15,11 @@ public:
 	void HandleCrafting();
 
 private:
-	Inventory PlayerInventory;
 	GatheringSystem Gatherer;
 	CraftingSystem Crafter;
+	TraverseSystem Traveler;
+	Player PlayerCharacter;
+
+	int ActionCounter = 0;
+
 };

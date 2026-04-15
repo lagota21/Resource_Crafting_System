@@ -128,15 +128,19 @@
     <ClCompile Include="Systems\CraftingSystem.cpp" />
     <ClCompile Include="Systems\GatheringSystem.cpp" />
     <ClCompile Include="Systems\Inventory.cpp" />
+    <ClCompile Include="Systems\TraverseSystem.cpp" />
     <ClCompile Include="Utils\Random.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\GameManager.h" />
+    <ClInclude Include="Core\Player.h" />
     <ClInclude Include="Data\ItemTypes.h" />
+    <ClInclude Include="Data\LocationTypes.h" />
     <ClInclude Include="Data\Recipe.h" />
     <ClInclude Include="Systems\CraftingSystem.h" />
     <ClInclude Include="Systems\GatheringSystem.h" />
     <ClInclude Include="Systems\Inventory.h" />
+    <ClInclude Include="Systems\TraverseSystem.h" />
     <ClInclude Include="Utils\Random.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
