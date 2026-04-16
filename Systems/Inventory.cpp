@@ -44,6 +44,11 @@ void Inventory::RemoveItems(const std::map<EItemType, int>& cost)
 void Inventory::Print() const
 {
 	std::cout << "\n--- Inventory ---\n";
+
+	if (Items.empty())
+	{
+		std::cout << "\nThe Inventory currently does not have any items stored.\n";
+	}
 	//The range-based for loop iterates through the Items map, printing each ItemType and its corresponding quantity.
 	for (const auto& Pair : Items)
 	{

@@ -11,6 +11,7 @@ struct FResourceNode
 	std::string Name;
 	EItemType ResourceType;
 	int RequiredLevel;
+	std::string ActionName;
 };
 
 class GatheringSystem

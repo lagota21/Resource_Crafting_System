@@ -26,6 +26,7 @@ enum class EItemType
 	//craft items
 	Plank,
 	IronBar,
+	CookedShrimp,
 	Axe
 	
 };
@@ -58,6 +59,8 @@ inline std::string ItemToString(EItemType type)
 		return "Normal Plank";
 	case EItemType::IronBar:
 		return "Iron Bar";
+	case EItemType::CookedShrimp:
+		return "Shrimp";
 	case EItemType::Axe:
 		return "Axe";
 	default:

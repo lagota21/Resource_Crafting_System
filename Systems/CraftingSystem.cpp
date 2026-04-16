@@ -28,6 +28,13 @@ void CraftingSystem::InitRecipes()
 	Axe.Ingredients[EItemType::NormalLog] = 3;
 	Axe.Ingredients[EItemType::IronBar] = 2;
 	Recipes.push_back(Axe);
+
+	// Shrimp Recipe: Raw Shrimp -> Shrimp
+	FRecipe Shrimp;
+	Shrimp.Result = EItemType::CookedShrimp;
+	Shrimp.DisplayName = "Shrimp";
+	Shrimp.Ingredients[EItemType::RawShrimp] = 1;
+	Recipes.push_back(Shrimp);
 }
 
 std::vector<FRecipe> CraftingSystem::GetValidRecipes(const Inventory& Inv) const

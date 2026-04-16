@@ -129,6 +129,7 @@
     <ClCompile Include="Systems\GatheringSystem.cpp" />
     <ClCompile Include="Systems\Inventory.cpp" />
     <ClCompile Include="Systems\TraverseSystem.cpp" />
+    <ClCompile Include="UI\ConsoleUI.cpp" />
     <ClCompile Include="Utils\Random.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -141,6 +142,7 @@
     <ClInclude Include="Systems\GatheringSystem.h" />
     <ClInclude Include="Systems\Inventory.h" />
     <ClInclude Include="Systems\TraverseSystem.h" />
+    <ClInclude Include="UI\ConsoleUI.h" />
     <ClInclude Include="Utils\Random.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
